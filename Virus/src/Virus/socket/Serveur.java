@@ -21,24 +21,25 @@ public class Serveur {
 			skt = srsk.accept();
 			
 			skt.setKeepAlive(true);
-			skt.setSoTimeout(500);;
 			System.out.println("Connexion réussie");
 			PrintWriter out = new PrintWriter(skt.getOutputStream(), true);
-			out.println("Ping");
+			out.println("Connect"+"\r\n");
 			
 			Thread.sleep(1000);
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(skt.getInputStream()));
 			while (!in.ready()) {}
-			System.out.println(in.readLine());
-			out.close();
+			if (in.readLine().equals("tree"));
+				out.println("tree accept"+"\r\n");
+
 			
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("Erreur de connexion server");
 		}
-	
+		
+		
 		
 		
 	}

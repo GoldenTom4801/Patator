@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -67,7 +68,7 @@ public class ClientFrame extends JFrame {
 		contentPane.add(sendButton);
 		sendButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
-				clt.send(textField_1.getText());
+				clt.send(textField_1.getText().toString());
 				
 			}
 		});
@@ -91,8 +92,12 @@ public class ClientFrame extends JFrame {
 		btnConnect.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if (!textField_2.getText().equals("")) {
 				clt = new Client(textField_2.getText().toString());
-				label.setText(clt.Message());
+				label.setText(clt.Message()); }
+				else {
+					JOptionPane.showMessageDialog(null, "IP manquante", "Erreur", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 	}

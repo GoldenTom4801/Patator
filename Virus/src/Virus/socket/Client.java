@@ -16,7 +16,7 @@ public class Client {
 			sk = new Socket(ip, 12347);
 			out = new PrintWriter(sk.getOutputStream(), true);
 			System.out.println("connexion réusi client");
-			PrintWriter out = new PrintWriter(sk.getOutputStream(), true);
+			//PrintWriter out = new PrintWriter(sk.getOutputStream(), true);
 			in = new BufferedReader(new InputStreamReader(sk.getInputStream()));
 			while (!in.ready()) {}
 			mess = in.readLine();
@@ -24,8 +24,8 @@ public class Client {
 			
 			
 			
-			out.println("Pong");
-			out.close();
+			//out.println("Pong");
+			//out.close();
 		}
 		catch(IOException e) {
 			e.printStackTrace();
