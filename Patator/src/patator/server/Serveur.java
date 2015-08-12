@@ -14,7 +14,7 @@ import java.net.Socket;
 public class Serveur {
 	private ServerSocket srsk;
 	private Socket skt;
-	public static String recv = "";
+	public String recv = "";
 	
 	PrintWriter out;
 
@@ -24,7 +24,8 @@ public class Serveur {
 			skt = srsk.accept();
 			
 			skt.setKeepAlive(true);
-			System.out.println("Connexion réussie");
+			
+			System.out.println("Connexion réussie"); //A supprimer
 			
 			
 
@@ -91,5 +92,11 @@ public class Serveur {
 		}
 		
 		Serveur.recv = "";
+	}
+	public getMess() {
+		return recv;
+	}
+	public setMess(String mess) {
+		this.recv = mess;
 	}
 }

@@ -21,13 +21,14 @@ public class ServeurListener extends Thread{
 			
 			in = new BufferedReader(new InputStreamReader(skt.getInputStream()));
 			System.out.println("Server: listener running !");
-			while(!Serveur.recv.equals("STOP")){
+			while(!Serveur.getMess().equals("STOP")){
 			
 			while (!in.ready()) {}
 			//if (in.readLine().equals("tree"));
 				//out.println("tree accept"+"\r\n");
-			Serveur.recv= in.readLine();
-			System.out.println(":"+in.readLine());
+			Serveur.setMess(in.readLine());
+			
+			System.out.println(":"+in.readLine()); //A supprimer
 			
 			
 			Thread.sleep(10);
