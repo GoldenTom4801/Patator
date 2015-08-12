@@ -14,7 +14,7 @@ import java.net.Socket;
 public class Serveur {
 	private ServerSocket srsk;
 	private Socket skt;
-	public String recv = "";
+	public static String recv = "";
 	
 	PrintWriter out;
 
@@ -79,24 +79,24 @@ public class Serveur {
 	}
 	
 	public void Parser() throws IOException{
-		if(!Serveur.recv.equals("")){
-			System.out.println("server: command recv: "+ Serveur.recv);
-			if(Serveur.recv.equals("ping")){
+		if(!recv.equals("")){
+			System.out.println("server: command recv: "+ recv);
+			if(recv.equals("ping")){
 				SendToClient("Pong!");
 			}
-			if(Serveur.recv.equals("STOP")){
+			if(recv.equals("STOP")){
 				SendToClient("QUITTING");
 				out.close();
 				System.exit(0);
 			}
 		}
 		
-		Serveur.recv = "";
+		recv = "";
 	}
-	public getMess() {
+	public static String getMess() {
 		return recv;
 	}
-	public setMess(String mess) {
-		this.recv = mess;
+	public static void setMess(String mess) {
+		recv = mess;
 	}
 }
