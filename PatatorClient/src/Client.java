@@ -41,7 +41,7 @@ public class Client {
 	public void send(String str) throws IOException {
 		out.println(str);//+"\r\n");
 		if(str.equals("STOP")){
-			//in.close();
+			in.close();
 			System.exit(0);
 		}
 	}

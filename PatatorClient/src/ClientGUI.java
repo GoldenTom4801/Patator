@@ -5,10 +5,13 @@ import javax.swing.JFrame;
 
 
 
+
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -33,7 +36,7 @@ public class ClientGUI extends JFrame {
 	private JTextField textField_2;
 	private JLabel label;
 	
-	public static boolean shouldRun = true;
+	//public static boolean shouldRun = true;
 	public static String recv = "";
 
 	/**
@@ -43,7 +46,6 @@ public class ClientGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//clt = new Client();
 					ClientGUI frame = new ClientGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -75,13 +77,17 @@ public class ClientGUI extends JFrame {
 		contentPane.add(sendButton);
 		sendButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
-				try {
-					clt.send(textField_1.getText().toString());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				if (clt != null) {
+					try {
+						clt.send(textField_1.getText().toString());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
-				
+				else {
+					JOptionPane.showMessageDialog(null, "Connectez vous avant de lancer une action", "Erreur", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		
@@ -89,7 +95,6 @@ public class ClientGUI extends JFrame {
 		label.setBounds(44, 149, 547, 288);
 		contentPane.add(label);
 		label.setText(ClientGUI.recv);
-		
 		
 		/*NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.getDefault());
 		DecimalFormat decimalFormat = (DecimalFormat) numberFormat;
@@ -114,4 +119,12 @@ public class ClientGUI extends JFrame {
 			}
 		});
 	}
+	public static void setMess(String mess) {
+		recv = mess;
+	}
+	public static String getMess() {
+		return recv;
+	}
+	
+	
 }

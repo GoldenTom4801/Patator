@@ -19,7 +19,7 @@ public class ServerListener extends Thread{
 			while(true){
 			in = new BufferedReader(new InputStreamReader(skt.getInputStream()));
 			while (!in.ready()) {}
-			ClientGUI.recv = in.readLine();
+			ClientGUI.setMess(in.readLine());
 			
 			Thread.sleep(10);
 			}
