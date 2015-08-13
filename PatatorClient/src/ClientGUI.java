@@ -7,10 +7,12 @@ import javax.swing.JFrame;
 
 
 
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -94,7 +96,8 @@ public class ClientGUI extends JFrame {
 		label = new JLabel("");
 		label.setBounds(44, 149, 547, 288);
 		contentPane.add(label);
-		label.setText(ClientGUI.recv);
+		label.setText(recv);
+		
 		
 		/*NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.getDefault());
 		DecimalFormat decimalFormat = (DecimalFormat) numberFormat;
