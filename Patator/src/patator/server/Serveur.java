@@ -26,13 +26,13 @@ public class Serveur {
 			skt.setKeepAlive(true);
 			
 			System.out.println("Connexion réussie"); //A supprimer
-			
+			out = new PrintWriter(skt.getOutputStream(), true);
 			
 
 			ServeurListener sl = new ServeurListener(skt);
 			sl.start();
 			
-			while(!Serveur.recv.equals("STOP")){
+			while(!recv.equals("STOP")){
 				Parser();
 				Thread.sleep(10);
 			}
@@ -74,7 +74,7 @@ public class Serveur {
 	
 	
 	public void SendToClient(String data) throws IOException{
-		out = new PrintWriter(skt.getOutputStream(), true);
+		
 		out.println(data+"\r\n");
 	}
 	
