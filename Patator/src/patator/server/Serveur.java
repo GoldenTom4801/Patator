@@ -1,5 +1,11 @@
 package patator.server;
 
+import java.awt.AWTException;
+import java.awt.HeadlessException;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,6 +16,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import javax.imageio.ImageIO;
 
 import RecupFile.RecupFile;
 
@@ -76,7 +84,6 @@ public class Serveur {
 	
 	
 	public void SendToClient(Object data) throws IOException{
-		
 		out.println(data+"\r\n");
 	}
 	
@@ -91,8 +98,19 @@ public class Serveur {
 				SendToClient(RecupFile.getFile(recv.split(" ")[1]));
 			}
 			if(recv.equals("help")) {
-				String str = "<html>Commande possible:<br> -ping : permet de vérifier la connexion en renvoyant un pong<br> -download : permet de télécharger un fichier<br> -STOP : éteins le serveur</html>"; //Baliser en html pour les sauts de lignes
+				String str = "<html>Commande possible:<br> -ping : permet de vérifier la connexion en renvoyant un pong<br> -download : permet de télécharger un fichier<br> -screenshot : permet faire un screenshot et de le récupérer sur le desktop<br> -STOP : éteins le serveur</html>"; //Baliser en html pour les sauts de lignes
 				SendToClient(str);
+			}
+			if(recv.equals("screenshot")) {
+				try {
+					BufferedImage image = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
+					ImageIO.write(image, "png", skt.getOutputStream());
+					skt.getOutputStream().flush();
+					image = null;
+				} catch (HeadlessException | AWTException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			if(recv.equals("STOP")){
 				//SendToClient("QUITTING");
