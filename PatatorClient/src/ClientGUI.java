@@ -36,7 +36,7 @@ public class ClientGUI extends JFrame {
 	private JTextField textField_1;
 	private Client clt;
 	private JTextField textField_2;
-	private JLabel label;
+	private static JLabel label;
 	
 	//public static boolean shouldRun = true;
 	public static String recv = "";
@@ -124,6 +124,7 @@ public class ClientGUI extends JFrame {
 	}
 	public static void setMess(String mess) {
 		recv = mess;
+		label.setText(mess);
 	}
 	public static String getMess() {
 		return recv;

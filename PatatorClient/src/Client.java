@@ -11,7 +11,6 @@ public class Client {
 	
 	Socket sk;
 	PrintWriter out;
-	BufferedReader in;
 	String mess;
 	
 	
@@ -39,9 +38,8 @@ public class Client {
 		} 
 	}
 	public void send(String str) throws IOException {
-		out.println(str);//+"\r\n");
+		out.println(str+"\r\n");//+"\r\n");
 		if(str.equals("STOP")){
-			in.close();
 			System.exit(0);
 		}
 	}
