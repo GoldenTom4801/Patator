@@ -1,4 +1,7 @@
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
@@ -19,7 +22,12 @@ public class ServerListener extends Thread{
 			while(true){
 			in = new BufferedReader(new InputStreamReader(skt.getInputStream()));
 			while (!in.ready()) {}
-			ClientGUI.setMess(in.readLine());
+			if (ClientGUI.cmd.split(" ")[0].equals("download")) { 
+				BufferedOutputStream buo = new BufferedOutputStream(new FileOutputStream(new File("file.txt")));
+				buo.write(in.read());
+			}
+			else {
+			ClientGUI.setMess(in.readLine()); }
 			
 			Thread.sleep(10);
 			}

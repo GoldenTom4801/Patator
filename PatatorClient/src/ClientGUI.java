@@ -40,7 +40,7 @@ public class ClientGUI extends JFrame {
 	
 	//public static boolean shouldRun = true;
 	public static String recv = "";
-
+	public static String cmd = "";
 	/**
 	 * Launch the application.
 	 */
@@ -81,7 +81,9 @@ public class ClientGUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if (clt != null) {
 					try {
-						clt.send(textField_1.getText().toString());
+						cmd = textField_1.getText().toString();
+						clt.send(cmd);
+						
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

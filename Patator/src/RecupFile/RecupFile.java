@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class RecupFile {
-	public byte[] getFile(String file) {
+	public static byte[] getFile(String file) {
 		File myFile = new File(file);
 		byte[] myByteArray = new byte[(int) myFile.length()];
 		BufferedInputStream fi;

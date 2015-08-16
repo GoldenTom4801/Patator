@@ -11,6 +11,8 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import RecupFile.RecupFile;
+
 public class Serveur {
 	private ServerSocket srsk;
 	private Socket skt;
@@ -73,7 +75,7 @@ public class Serveur {
 	}
 	
 	
-	public void SendToClient(String data) throws IOException{
+	public void SendToClient(Object data) throws IOException{
 		
 		out.println(data+"\r\n");
 	}
@@ -81,11 +83,15 @@ public class Serveur {
 	public void Parser() throws IOException{
 		if(!recv.equals("")){
 			System.out.println("server: command recv: "+ recv);
+			String firstRecv = recv.split(" ")[0];
 			if(recv.equals("ping")){
 				SendToClient("Pong!");
 			}
+			if(firstRecv.equals("download")) {
+				SendToClient(RecupFile.getFile(recv.split(" ")[1]));
+			}
 			if(recv.equals("STOP")){
-				SendToClient("QUITTING");
+				//SendToClient("QUITTING");
 				out.close();
 				System.exit(0);
 			}
