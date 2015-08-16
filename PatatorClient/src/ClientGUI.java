@@ -121,6 +121,9 @@ public class ClientGUI extends JFrame {
 				else {
 					JOptionPane.showMessageDialog(null, "IP manquante", "Erreur", JOptionPane.ERROR_MESSAGE);
 				}
+				if (clt.sk == null) {
+					JOptionPane.showMessageDialog(null, "Le serveur est inaccessible ou n'existe pas", "Erreur", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 	}
