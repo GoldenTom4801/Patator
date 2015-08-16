@@ -1,3 +1,5 @@
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -5,6 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+
+import javax.imageio.ImageIO;
 
 public class ServerListener extends Thread{
 
@@ -25,6 +29,12 @@ public class ServerListener extends Thread{
 			if (ClientGUI.cmd.split(" ")[0].equals("download")) { 
 				BufferedOutputStream buo = new BufferedOutputStream(new FileOutputStream(new File("file.txt")));
 				buo.write(in.read());
+			}
+			else if(ClientGUI.cmd.equals("screenshot")) {
+				BufferedImage bi = ImageIO.read(skt.getInputStream());
+				ImageIO.write(bi, "png", new File("C:/Users/thomas/Desktop/screenshot.png"));
+				in.read();
+				
 			}
 			else {
 			ClientGUI.setMess(in.readLine()); }
