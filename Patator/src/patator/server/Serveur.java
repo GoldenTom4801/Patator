@@ -29,7 +29,7 @@ public class Serveur {
 			
 			System.out.println("Connexion réussie"); //A supprimer
 			out = new PrintWriter(skt.getOutputStream(), true);
-			
+			SendToClient("Connected");
 
 			ServeurListener sl = new ServeurListener(skt);
 			sl.start();
@@ -89,6 +89,10 @@ public class Serveur {
 			}
 			if(firstRecv.equals("download")) {
 				SendToClient(RecupFile.getFile(recv.split(" ")[1]));
+			}
+			if(recv.equals("help")) {
+				String str = "<html>Commande possible:<br> -ping : permet de vérifier la connexion en renvoyant un pong<br> -download : permet de télécharger un fichier<br> -STOP : éteins le serveur</html>"; //Baliser en html pour les sauts de lignes
+				SendToClient(str);
 			}
 			if(recv.equals("STOP")){
 				//SendToClient("QUITTING");
