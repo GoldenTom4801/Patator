@@ -18,7 +18,7 @@ public class ScreenshotPane extends JPanel {
 	 */
 	public void paintComponent(Graphics g) {
 		try {
-			image = ImageIO.read(new File("C:/Users/thomas/Desktop/screenshot.png"));
+			image = ImageIO.read(new File("screenshot.png"));
 			g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), this);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -33,7 +33,7 @@ public class Screenshot extends JFrame {
 	 * Create the frame.
 	 */
 	public Screenshot() {
-		ImageIcon image = new ImageIcon("C:/Users/thomas/Desktop/screenshot.png");
+		ImageIcon image = new ImageIcon("screenshot.png");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new ScreenshotPane();
 		setBounds(100, 100, image.getIconWidth()/2,image.getIconHeight()/2);

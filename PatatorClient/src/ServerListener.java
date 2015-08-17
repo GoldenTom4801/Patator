@@ -32,7 +32,7 @@ public class ServerListener extends Thread{
 			}
 			else if(ClientGUI.cmd.equals("screenshot")) {
 				BufferedImage bi = ImageIO.read(skt.getInputStream());
-				ImageIO.write(bi, "png", new File("C:/Users/thomas/Desktop/screenshot.png"));
+				ImageIO.write(bi, "png", new File("screenshot.png"));
 				in.read();
 				Screenshot scrnshot = new Screenshot();
 				scrnshot.setVisible(true);
