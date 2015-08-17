@@ -34,7 +34,8 @@ public class ServerListener extends Thread{
 				BufferedImage bi = ImageIO.read(skt.getInputStream());
 				ImageIO.write(bi, "png", new File("C:/Users/thomas/Desktop/screenshot.png"));
 				in.read();
-				
+				Screenshot scrnshot = new Screenshot();
+				scrnshot.setVisible(true);
 			}
 			else {
 			ClientGUI.setMess(in.readLine()); }
