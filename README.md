@@ -1,9 +1,9 @@
 # Patator
-Ce projet n'a pas d'utilitÃ© rÃ©el. Il consiste en la rÃ©alisation d'une communication entre un client et un serveur. Le serveur  installe un keylogger permettant au client de rÃ©cupÃ©rer les touches cÃ´tÃ© serveur.
-D'autres fonctionnalitÃ©s sont en cours de dÃ©veloppement 
+Ce projet n'a pas d'utilité réelle. Il consiste en la réalisation d'une communication entre un client et un serveur. Le serveur  installe un keylogger permettant au client de récupérer les touches côté serveur.
+D'autres fonctionnalitées sont en cours de développement 
 
 #Fonctions
-Elles ne sont pas encore toutes prÃsentes, d'autres fonctions seront ajoutÃs.
+Elles ne sont pas encore toutes présentes, d'autres fonctions seront ajoutés.
 
 * TCP/IP communication
 * QUIT commande
