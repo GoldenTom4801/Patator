@@ -40,7 +40,11 @@ public class Screenshot extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+	}
+	public void update() {
+		ImageIcon image = new ImageIcon("screenshot.png");
+		setBounds(100, 100, image.getIconWidth()/2,image.getIconHeight()/2);
+		contentPane.repaint();
 	}
 
 }

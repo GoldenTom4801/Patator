@@ -13,7 +13,8 @@ import javax.imageio.ImageIO;
 public class ServerListener extends Thread{
 
 	private Socket skt = null;
-	
+	public static boolean isLive = false;
+	Screenshot scrnshot;
 	public ServerListener(Socket skt){
 		this.skt = skt;
 	}
@@ -30,12 +31,18 @@ public class ServerListener extends Thread{
 				BufferedOutputStream buo = new BufferedOutputStream(new FileOutputStream(new File("file.txt")));
 				buo.write(in.read());
 			}
-			else if(ClientGUI.cmd.equals("screenshot")) {
+			else if(ClientGUI.cmd.equals("screenshot") || ClientGUI.cmd.equals("live")) {
 				BufferedImage bi = ImageIO.read(skt.getInputStream());
 				ImageIO.write(bi, "png", new File("screenshot.png"));
 				in.read();
-				Screenshot scrnshot = new Screenshot();
-				scrnshot.setVisible(true);
+				if (scrnshot == null) {
+					scrnshot = new Screenshot(); 
+					scrnshot.setVisible(true);
+				} 
+				scrnshot.update();
+				if (isLive == true) {
+					Client.send("screenshot");
+				}
 			}
 			else {
 			ClientGUI.setMess(in.readLine()); }

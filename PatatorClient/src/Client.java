@@ -10,7 +10,7 @@ public class Client {
 	
 	
 	Socket sk;
-	PrintWriter out;
+	static PrintWriter out;
 	String mess;
 	
 	
@@ -37,8 +37,17 @@ public class Client {
 			System.out.println("Erreur réception client");
 		} 
 	}
-	public void send(String str) throws IOException {
-		out.println(str+"\r\n");//+"\r\n");
+	public static void send(String str) throws IOException {
+		if (str.equals("live")) {
+			out.println("screenshot"+"\r\n");
+			ServerListener.isLive = true;
+		}
+		else if (str.equals("live stop")) {
+			ServerListener.isLive = false;
+		}
+		else {
+			out.println(str+"\r\n");//+"\r\n");
+		}
 		if(str.equals("STOP")){
 			System.exit(0);
 		}
